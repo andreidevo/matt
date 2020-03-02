@@ -51,7 +51,11 @@ dependencies {
     implementation 'com.github.kittinunf.fuel:fuel:2.1.0'
 
     implementation 'in.hourglass.mathrender:katexmathview:1.0.2'
-
+    implementation 'io.github.kexanie.library:MathView:0.0.6'
 
     implementation 'com.github.gregcockroft:AndroidMath:ALPHA'
+    implementation 'in.hourglass.mathrender:katexmathview:1.0.2'
+
+
+    compile 'com.github.Nishant-Pathak:MathView:v1.1'
 }

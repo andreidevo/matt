@@ -12,8 +12,6 @@
         app:cardElevation="0dp"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-
-
         app:cardBackgroundColor="@color/mainColor"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -26,50 +24,81 @@
             android:text="Сложение"
             android:textColor="#FFF"
             android:textSize="30sp">
-
         </TextView>
     </androidx.cardview.widget.CardView>
 
+    <katex.hourglass.in.mathlib.MathView
+        android:id="@+id/mathView"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginTop="200dp"
-        android:background="@color/mainColor"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintBottom_toTopOf="@+id/cardView2"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:setTextColor="@color/whiteColor"
+        app:setTextSize="20sp" />
 
-        <com.agog.mathdisplay.MTMathView
-            android:id="@+id/formul"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:textColor="#FFF"
+        android:textSize="24sp"
+        android:layout_height="wrap_content"
+        android:text=""
 
-            android:foregroundGravity="center"
-            android:textAlignment="center" />
+        app:layout_constraintBottom_toTopOf="@+id/cardView2"
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
 
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="ssss"
-            android:fontFamily="@font/mu2"
-            android:textColor="#FFF"
-            android:textSize="25sp"
-            app:layout_constraintStart_toEndOf="@+id/formul"
-            app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/mathView" />
 
-        </TextView>
-    </LinearLayout>
+
+
+
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/nextBtn"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:cardBackgroundColor="@color/correctColor"
+        app:cardCornerRadius="30dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView2">
+        <androidx.cardview.widget.CardView
+            android:visibility="visible"
+            app:cardBackgroundColor="@color/mainColor"
+            android:layout_width="match_parent"
+            android:layout_margin="2dp"
+            android:layout_height="match_parent"
+
+            app:cardCornerRadius="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/cardView2">
+
+            <TextView
+                android:textSize="20sp"
+                android:text="Дальше"
+                android:textColor="#FFF"
+                android:gravity="center"
+                android:fontFamily="@font/robotobold"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </TextView>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_margin="16dp"
@@ -78,7 +107,6 @@
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         >
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -93,158 +121,15 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/card1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="4dp"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/color1"
-                    app:cardElevation="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/mu2"
-                        android:gravity="center"
-                        android:text="1"
-                        android:textColor="#FFF"
-                        android:textSize="28dp">
-
-                    </TextView>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card2"
-
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="4dp"
-                    android:layout_weight="1"
-
-                    app:cardBackgroundColor="@color/blockColor"
-                    app:cardElevation="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/mu2"
-                        android:gravity="center"
-                        android:text="2"
-                        android:textColor="#FFF"
-                        android:textSize="28dp">
-
-                    </TextView>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card3"
-
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/blockColor"
-                    app:cardElevation="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/mu2"
-                        android:gravity="center"
-                        android:text="3"
-                        android:textColor="#FFF"
-                        android:textSize="28dp">
-
-                    </TextView>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="4dp"
-                android:layout_weight="1">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card4"
-
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="4dp"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/blockColor"
-                    app:cardElevation="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/mu2"
-                        android:gravity="center"
-                        android:text="4"
-                        android:textColor="#FFF"
-                        android:textSize="28dp">
-
-                    </TextView>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card5"
-
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="4dp"
-                    android:layout_weight="1"
-
-                    app:cardBackgroundColor="@color/blockColor"
-                    app:cardElevation="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/mu2"
-                        android:gravity="center"
-                        android:text="5"
-                        android:textColor="#FFF"
-                        android:textSize="28dp">
-
-                    </TextView>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card6"
-
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/blockColor"
-                    app:cardElevation="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/mu2"
-                        android:gravity="center"
-                        android:text="6"
-                        android:textColor="#FFF"
-                        android:textSize="28dp">
-
-                    </TextView>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="4dp"
-                android:layout_weight="1">
-
-                <androidx.cardview.widget.CardView
                     android:id="@+id/card7"
-
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="4dp"
                     android:layout_weight="1"
+                    android:foreground="@drawable/ripple"
+                    android:clickable="true"
                     app:cardBackgroundColor="@color/blockColor"
+                    android:background="@drawable/ripple"
                     app:cardElevation="0dp">
 
                     <TextView
@@ -267,6 +152,8 @@
                     android:layout_marginEnd="4dp"
                     android:layout_weight="1"
 
+                    android:foreground="@drawable/ripple"
+                    android:clickable="true"
                     app:cardBackgroundColor="@color/blockColor"
                     app:cardElevation="0dp">
 
@@ -288,6 +175,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:foreground="@drawable/ripple"
+                    android:clickable="true"
                     app:cardBackgroundColor="@color/blockColor"
                     app:cardElevation="0dp">
 
@@ -311,12 +200,14 @@
                 android:layout_weight="1">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardgo"
+                    android:id="@+id/card4"
 
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="4dp"
                     android:layout_weight="1"
+                    android:foreground="@drawable/ripple"
+                    android:clickable="true"
                     app:cardBackgroundColor="@color/blockColor"
                     app:cardElevation="0dp">
 
@@ -325,11 +216,164 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/mu2"
                         android:gravity="center"
-                        android:text="go"
+                        android:text="4"
                         android:textColor="#FFF"
                         android:textSize="28dp">
 
                     </TextView>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card5"
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+
+                    android:foreground="@drawable/ripple"
+                    android:clickable="true"
+                    app:cardBackgroundColor="@color/blockColor"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/mu2"
+                        android:gravity="center"
+                        android:text="5"
+                        android:textColor="#FFF"
+                        android:textSize="28dp">
+
+                    </TextView>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card6"
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/ripple"
+                    android:clickable="true"
+                    app:cardBackgroundColor="@color/blockColor"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/mu2"
+                        android:gravity="center"
+                        android:text="6"
+                        android:textColor="#FFF"
+                        android:textSize="28dp">
+
+                    </TextView>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card1"
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/ripple"
+                    android:clickable="true"
+                    app:cardBackgroundColor="@color/blockColor"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/mu2"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="#FFF"
+                        android:textSize="28dp">
+
+                    </TextView>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card2"
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/ripple"
+                    android:clickable="true"
+                    app:cardBackgroundColor="@color/blockColor"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/mu2"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textColor="#FFF"
+                        android:textSize="28dp">
+
+                    </TextView>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card3"
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:foreground="@drawable/ripple"
+                    android:clickable="true"
+                    app:cardBackgroundColor="@color/blockColor"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/mu2"
+                        android:gravity="center"
+                        android:text="3"
+                        android:textColor="#FFF"
+                        android:textSize="28dp">
+
+                    </TextView>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/carddel"
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/blockColor"
+                    app:cardElevation="0dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="20dp"
+                        android:src="@drawable/ic_delete">
+
+                    </ImageView>
+
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -339,7 +383,8 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="4dp"
                     android:layout_weight="1"
-
+                    android:foreground="@drawable/ripple"
+                    android:clickable="true"
                     app:cardBackgroundColor="@color/blockColor"
                     app:cardElevation="0dp">
 
@@ -356,21 +401,25 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/carddel"
-
+                    android:id="@+id/cardgo"
+                    android:foreground="@drawable/ripple"
+                    android:clickable="true"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     app:cardBackgroundColor="@color/blockColor"
                     app:cardElevation="0dp">
 
-                    <ImageView
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="20dp"
-                        android:src="@drawable/ic_delete">
+                        android:fontFamily="@font/mu2"
+                        android:gravity="center"
+                        android:text="go"
+                        android:textColor="#FFF"
+                        android:textSize="28dp">
 
-                    </ImageView>
+                    </TextView>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
         </LinearLayout>

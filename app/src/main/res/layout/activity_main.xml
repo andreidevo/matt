@@ -181,20 +181,12 @@
                     android:layout_width="match_parent"
                     android:text="Начать"
                     android:fontFamily="@font/mu2"
-
                     android:textSize="20sp"
                     android:textColor="#FFF"
                     android:gravity="center"
                     android:layout_height="match_parent"></TextView>
 
             </androidx.cardview.widget.CardView>
-
-
         </androidx.cardview.widget.CardView>
-
-
     </androidx.cardview.widget.CardView>
-
-
-
 </LinearLayout>

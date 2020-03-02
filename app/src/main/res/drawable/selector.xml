@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
-        android:drawable="@color/btn1Color" /> <!-- pressed -->
+        android:drawable="@color/incorrectColor" /> <!-- pressed -->
     <item android:state_focused="true"
-        android:color="@color/btn2Color" /> <!-- focused -->
+        android:color="@color/incorrectColor" /> <!-- focused -->
     <item android:state_hovered="true"
         android:drawable="@color/mainColor" /> <!-- hovered -->
     <item android:drawable="@color/blockColor" /> <!-- default -->
