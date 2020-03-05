@@ -20,6 +20,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug{
+            minifyEnabled false
+        }
     }
 }
 
@@ -57,5 +60,8 @@ dependencies {
     implementation 'in.hourglass.mathrender:katexmathview:1.0.2'
 
 
-    compile 'com.github.Nishant-Pathak:MathView:v1.1'
+    implementation 'com.github.Nishant-Pathak:MathView:v1.1'
+
+    //picker number
+    implementation 'com.github.sephiroth74:NumberSlidingPicker:v.1.1.1'
 }

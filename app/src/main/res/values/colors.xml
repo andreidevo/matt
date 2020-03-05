@@ -7,6 +7,8 @@
     <color name="correctColor">#6CE286</color>
     <color name="incorrectColor">#FF6B6B</color>
     <color name="whiteColor">#FFFFFF</color>
+    <color name="grayColor">#868686</color>
     <color name="transparent">#00000000</color>
+
 
 </resources>

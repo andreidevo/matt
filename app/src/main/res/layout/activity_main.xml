@@ -6,7 +6,7 @@
     android:background="@color/mainColor"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
     <TextView
         android:fontFamily="@font/robotobold"

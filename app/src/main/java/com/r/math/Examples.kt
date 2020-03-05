@@ -2,37 +2,25 @@ package com.r.math
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.view.MotionEvent
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
-import com.agog.mathdisplay.MTMathView
-import android.graphics.Typeface
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.opengl.Visibility
 import android.view.View
-import android.webkit.WebSettings
-import android.webkit.WebView
-import com.agog.mathdisplay.MTFontManager
-import com.agog.mathdisplay.render.MTFont
+import android.widget.ImageView
 import katex.hourglass.`in`.mathlib.MathView
-import kotlinx.android.synthetic.main.activity_examples.*
-import java.security.AccessController.getContext
-import kotlin.math.floor
+import slang.slanger.viewModel.ViewModel
 
 
+var answer = 0
+var GlobalLvl = 1
 class Examples : AppCompatActivity() {
 
-
-    //lateinit var math1 : MathView
     lateinit var textView : TextView
     lateinit var card1 : CardView
     lateinit var carddel : CardView
@@ -47,16 +35,26 @@ class Examples : AppCompatActivity() {
     lateinit var card2 : CardView
     lateinit var cardgo : CardView
     lateinit var nextBtn : CardView
-    lateinit var webView : WebView
+    lateinit var backbtn : ImageView
+    lateinit var settingsbtn : ImageView
     var text = ""
     var limitCount = 3
     var Count = 0
     lateinit var   mathView : MathView
     var checkerBtnGo = false
+
+    var ViewModel = ViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_examples)
 
+        initViews()
+        bindingViews()
+        replaceEcuation()
+    }
+
+    fun initViews()
+    {
         card1  = findViewById(R.id.card1)
         card2  = findViewById(R.id.card2)
         card3  = findViewById(R.id.card3)
@@ -72,31 +70,13 @@ class Examples : AppCompatActivity() {
         nextBtn =  findViewById(R.id.nextBtn)
         textView =  findViewById(R.id.textView)
         mathView =  findViewById(R.id.mathView)
+        backbtn =  findViewById(R.id.backbtn)
+        settingsbtn =  findViewById(R.id.settingsBtn)
 
 
 
-
-
-
-        //mathView.setDisplayText("\$x=\\frac{1+y}{1+2z^2}$")
         mathView.getSettings().setLoadWithOverviewMode(true);
         mathView.getSettings().setUseWideViewPort(true);
-        //mathView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
-        //mathView.getSettings().setBuiltInZoomControls(true)
-            //.setBuiltInZoomControls(true);
-       // math1 = findViewById(R.id.formul)
-
-
-
-//        math1.font = MTFontManager.fontWithName("latinmodern-math", dpTopixel(this,25.0f))
-//        math1.labelMode = MTMathView.MTMathViewMode.KMTMathViewModeText
-//
-
-//        math1.textAlignment = MTMathView.MTTextAlignment.KMTTextAlignmentCenter
-//
-//        math1.textColor= ContextCompat.getColor(this, R.color.whiteColor)
-//        math1.fontSize = dpTopixel(this,25.0f)
-//        math1.latex = ("$=\\frac{1+y}{1+2z^2}\$")
 
         setonClickListener("1", card1)
         setonClickListener("2", card2)
@@ -108,24 +88,28 @@ class Examples : AppCompatActivity() {
         setonClickListener("8", card8)
         setonClickListener("9", card9)
         setonClickListener("0", card0)
-
+    }
+    fun bindingViews()
+    {
         carddel.setOnClickListener{
             deleteNumInText()
-            vibrate()
+            ViewModel.vibrate(this)
         }
         cardgo.setOnClickListener {
-
-            if( !checkerBtnGo )
+            if( !checkerBtnGo && text != "")
             {
                 val num = text.toInt()
                 nextBtn.visibility = View.VISIBLE
 
-                if (num == answer) {
+                if (num == answer)
+                {
                     nextBtn.setCardBackgroundColor(ContextCompat.getColor(this, R.color.correctColor));
+                    textView.setTextColor(ContextCompat.getColor(this, R.color.correctColor))
                 }
                 else
                 {
                     nextBtn.setCardBackgroundColor(ContextCompat.getColor(this, R.color.incorrectColor));
+                    textView.setTextColor(ContextCompat.getColor(this, R.color.incorrectColor))
                 }
                 checkerBtnGo = true
             }
@@ -139,30 +123,40 @@ class Examples : AppCompatActivity() {
             replaceEcuation()
             checkerBtnGo = false
         }
+        backbtn.setOnClickListener {
+            finish()
+        }
+        settingsbtn.setOnClickListener {
+            var intent = Intent(this, settings::class.java)
+            startActivity(intent)
+        }
     }
 
     fun replaceEcuation()
     {
+        val x = (0..2).random()
 
-        var x = (0..1).random()
-
-        if( x == 0)
-        {
-            var arr = summ(2,2)
-            mathView.setDisplayText("${arr[0]} + ${arr[1]} = ")
-            answer = arr[0] + arr[1]
+        when (x) {
+            0 -> {
+                val arr = ViewModel.summ(2,2)
+                mathView.setDisplayText(ViewModel.summString(arr))
+                answer = ViewModel.summAnswer(arr)
+            }
+            1 -> ViewModel.summFractionPresent(mathView,1,20)
+            2 -> ViewModel.summFractionPresent(mathView,13,30)
+            3 ->
+            {
+                val arr = ViewModel.summ(2,3)
+                mathView.setDisplayText(ViewModel.summString(arr))
+                answer = ViewModel.summAnswer(arr)
+            }
         }
-        else if( x == 1)
-        {
-            drobi()
 
-        }
-
-        //answer = arr[0] + arr[1]
         text = ""
         textView.text = ""
         Count = 0
         nextBtn.visibility = View.INVISIBLE
+        textView.setTextColor(ContextCompat.getColor(this, R.color.whiteColor))
     }
 
     fun setonClickListener(str : String, card : CardView)
@@ -171,37 +165,16 @@ class Examples : AppCompatActivity() {
             if( Count <= limitCount)
             {
                 addNumToText(str)
-                vibrate()
+                ViewModel.vibrate(this)
                 Count++
             }
         }
     }
-
-    fun vibrate()
-    {
-        val v = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            v.vibrate(VibrationEffect.createOneShot(20, VibrationEffect.DEFAULT_AMPLITUDE))
-        } else {
-            v.vibrate(20)
-        }
-    }
-
     fun addNumToText(s : String)
     {
         text += s
-        textView.text = "$text"
+        textView.text = text
 
-    }
-
-    fun pixelTodp(c: Context, pixel: Float): Float {
-        val density = c.resources.displayMetrics.density
-        return pixel / density
-    }
-
-    fun dpTopixel(c: Context, dp: Float): Float {
-        val density = c.resources.displayMetrics.density
-        return dp * density
     }
 
     fun deleteNumInText()
@@ -210,76 +183,8 @@ class Examples : AppCompatActivity() {
         {
             Count--
             text = text.dropLast(1)
-            textView.text = "$text"
+            textView.text = text
 
         }
     }
-    @SuppressLint("ClickableViewAccessibility")
-
-    var answer = 0
-    override fun onResume() {
-        super.onResume()
-        val arr = summ(2, 2)
-
-       // mathView.setDisplayText("${arr[0]} + ${arr[1]} =")
-        drobi()
-       // answer = arr[0] + arr[1]
-    }
-
-
-    /* params: count digits, count of numbers
-    *  return: array of numbers
-    *  */
-    fun summ(max : Int, count : Int) : ArrayList<Int>
-    {
-        if( count == 2)
-        {
-            val x = (1..(Math.pow(10.0 ,max.toDouble())).toInt()).random()
-            val y = (1..(Math.pow(10.0 ,max.toDouble())).toInt()).random()
-
-            return arrayListOf(x, y)
-        }
-        else
-            return arrayListOf()
-    }
-    fun drobi() : Int
-    {
-
-        var arr = rollNumberDrobi()
-        val s = "$\\frac{${arr[0]}}{${arr[1]}} + \\frac{${arr[2]}}{${arr[3]}} = \$"
-        mathView.setDisplayText(s)
-        answer = ((arr[0]*arr[3] + arr[2] * arr[1])/(arr[1] * arr[3])).toInt()
-        return 1
-    }
-    fun rollNumberDrobi() : ArrayList<Int>
-    {
-
-        var check = 0;
-        var b = (1..20).random().toDouble()
-        var d = (1..20).random().toDouble()
-        var a = (1..20).random().toDouble()
-        var y = 1
-
-
-        var arr = arrayListOf<Int>()
-        while (check == 0)
-        {
-
-            for(i in (1..100))
-                if( Math.floor( (a*d + i * b)/(b * d)) == (a*d + i * b)/(b * d) && i != d.toInt() )
-                {
-                    y = i
-                    check = 1
-                    arr = arrayListOf(a.toInt(),b.toInt(),y,d.toInt())
-                    break
-                }
-
-            b = (1..20).random().toDouble()
-            d = (1..20).random().toDouble()
-            a = (1..20).random().toDouble()
-        }
-
-        return  arr
-    }
-
 }
